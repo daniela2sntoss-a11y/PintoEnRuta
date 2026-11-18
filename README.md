@@ -1,40 +1,46 @@
-# Pinto en ruta · Actualización de la Máquina del Tiempo
+# Pinto en ruta — documentación cronológica del proceso
 
-Esta versión conserva la guía interactiva y actualiza dos componentes:
+Esta carpeta contiene la página de documentación del proceso de desarrollo de **Pinto en ruta**.
 
-1. **Carrusel «Un paseo en imágenes»**: flechas anterior/siguiente, desplazamiento horizontal táctil, arrastre con ratón, teclado, indicador de progreso y soporte para movimiento reducido.
-2. **Máquina del Tiempo**: incluye únicamente dos comparaciones, Casa Consistorial y Torre de Éboli. Usa las dos fotografías históricas aportadas por la usuaria y vistas contemporáneas con atribución y licencia.
+## Organización del contenido
 
-## Ejecutar en local
+La página separa dos bloques para mantener el orden solicitado:
 
-Abre una terminal dentro de la carpeta y ejecuta:
+1. **Proceso principal con ChatGPT:** siete fases cronológicas que recogen los prompts, las soluciones entregadas, las correcciones detectadas y los ZIP de cada iteración.
+2. **Comparación final:** únicamente al final aparecen las dos implementaciones alternativas obtenidas con Claude y Gemini, junto con el prompt consolidado, capturas y archivos HTML originales.
+
+Las capturas de las versiones ChatGPT están en `capturas/chatgpt/`. Las capturas de las soluciones alternativas están únicamente en `capturas/alternativas/`.
+
+## Estructura
+
+- `index.html`: página de documentación.
+- `styles.css`: diseño responsive, modo claro/oscuro y estilos de la cronología.
+- `app.js`: navegación móvil, cambio de tema y visor ampliable de capturas.
+- `capturas/chatgpt/`: capturas de las interfaces de las versiones desarrolladas durante el proceso principal.
+- `capturas/alternativas/`: capturas finales de las dos soluciones externas, mostradas solo en la última sección.
+- `versiones/chatgpt/`: código fuente de las sucesivas entregas de ChatGPT, organizado por fase.
+- `descargas/chatgpt/`: ZIP de cada entrega para volver a descargarla.
+- `versiones/claude/` y `versiones/gemini/`: HTML finales de las soluciones alternativas.
+
+## Ejecución local
+
+Abre `index.html` en un navegador moderno o inicia un servidor local:
 
 ```bash
 python -m http.server 8000
 ```
 
-Abre `http://localhost:8000` en el navegador.
+Abre `http://localhost:8000`.
 
-## Archivos principales
+## Publicación en GitHub Pages
 
-- `index.html`: estructura de la guía.
-- `styles.css`: diseño, carrusel y comparador.
-- `app.js`: navegación, carrusel, Máquina del Tiempo y lógica de interacción.
-- `assets/historic/casa-consistorial-antigua.jpg`: fotografía antigua aportada por la usuaria.
-- `assets/historic/torre-eboli-antigua.jpg`: fotografía antigua aportada por la usuaria.
-- `FUENTES_VISUALES.md`: créditos y licencias de las vistas contemporáneas.
+1. Sube **todo el contenido** de esta carpeta al repositorio, conservando las rutas y subcarpetas.
+2. En GitHub entra en **Settings → Pages**.
+3. Selecciona **Deploy from a branch**, rama `main` y carpeta `/ (root)`.
+4. Guarda los cambios y abre la URL que GitHub Pages muestre.
 
-Las fotografías contemporáneas se cargan desde Wikimedia Commons; para verlas es necesaria una conexión a Internet. Las fotografías antiguas aportadas por la usuaria están guardadas dentro del proyecto y se publican junto con los demás recursos.
+## Responsive y accesibilidad
 
-## Fotografías históricas originales
+La documentación se adapta a escritorio, tablet y móvil. Incluye navegación móvil, imágenes fluidas, enlaces táctiles, visor de capturas, foco visible, soporte de teclado, `prefers-reduced-motion`, áreas seguras de dispositivos móviles y un tema claro/oscuro cuya preferencia se guarda cuando el navegador permite `localStorage`.
 
-La carpeta `assets/historic/` contiene directamente los dos PNG originales aportados por la usuaria en la conversación, sin recodificación:
-- `casa-consistorial-antigua.png`
-- `torre-eboli-antigua.png`
-
-Mantén esas rutas al publicar el proyecto en GitHub Pages.
-
-
-## Corrección de la imagen de la Torre en el carrusel
-
-La tarjeta «Torre de Éboli» de «Un paseo en imágenes» usa una fotografía directa de Wikimedia Commons, con carga prioritaria y una cadena de alternativas (Visit Madrid, Ayuntamiento de Pinto y, finalmente, la fotografía histórica local). Así, si el servidor externo falla, la tarjeta conserva una imagen y no queda en blanco.
+Las capturas de las páginas de guía son vistas de las interfaces HTML entregadas. Las fotografías remotas de las aplicaciones pueden requerir conexión a Internet; los archivos históricos facilitados por la usuaria se conservan en los ZIP de sus respectivas versiones.
